@@ -87,7 +87,7 @@ async function getLoggedInUser(req, res) {
 async function updateUser(req, res) {
     try {
         const updatedUser = await User.findByIdAndUpdate(req.userID, req.body, { new: true })
-        res.status(200).json(updatedUser)
+        res.status(200).json({ result: updatedUser })
     } catch (err) {
         console.log(err)
     }
