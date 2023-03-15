@@ -26,7 +26,7 @@ async function signup(req, res) {
             "Verify Email", 
             { 
                 name: fullName, 
-                link: `https://bunzz-dao-fi.netlify.app/verify-email?user=${result._id}` 
+                link: `https://grizzly-rethink.netlify.app/verify-email?user=${result._id}` 
             }, 
             "../utils/templates/verifyEmail.handlebars"
         );
@@ -104,7 +104,7 @@ async function forgotPassword(req, res) {
         const resetToken = crypto.randomBytes(32).toString("hex");
         const hashedToken = await bcrypt.hash(resetToken, 12)
         await Token.create({ token: hashedToken, user: user, createdAt: Date.now() })
-        const resetLink = `https://bunzz-dao-fi.netlify.app/reset-password?token=${resetToken}&userID=${user._id}`
+        const resetLink = `https://grizzly-rethink.netlify.app/reset-password?token=${resetToken}&userID=${user._id}`
         sendMail(user.email, "Password Reset Request", { name: user.name, link: resetLink }, "../utils/templates/resetPasswordRequest.handlebars");
         res.status(200).json({ result: 'success' });
 
